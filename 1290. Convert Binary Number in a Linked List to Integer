@@ -33,6 +33,8 @@ Each node's value is either 0 or 1.
 SOLUTION IN JAVA:
 
 
+SOLUTION 1:
+
 class Solution {
     public int getDecimalValue(ListNode head) {
         
@@ -43,5 +45,20 @@ class Solution {
             head=head.next;
         }
         return Integer.parseInt(sb.toString(),2);
+    }
+}
+
+SOLUTION 2:
+
+class Solution {
+    public int getDecimalValue(ListNode head) {
+        
+        int decimal=0;
+
+        while(head!=null){
+            decimal=decimal*2+head.val;
+            head=head.next;
+        }
+        return decimal;
     }
 }
