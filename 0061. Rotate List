@@ -1,0 +1,63 @@
+61. Rotate List
+
+
+
+Given the head of a linked list, rotate the list to the right by k places.
+
+ 
+
+Example 1:
+
+
+Input: head = [1,2,3,4,5], k = 2
+Output: [4,5,1,2,3]
+Example 2:
+
+
+Input: head = [0,1,2], k = 4
+Output: [2,0,1]
+ 
+
+Constraints:
+
+The number of nodes in the list is in the range [0, 500].
+-100 <= Node.val <= 100
+0 <= k <= 2 * 109
+
+
+
+SOLUTION IN JAVA:
+
+
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode node=head;
+        int size=0;
+        while(node!=null){
+            size++;
+            node=node.next;
+        }
+        node=head;
+        int rot=0;
+        if(size<k){
+            rot=k%size;
+        }else{
+            rot=k;
+        }
+        while(rot!=0){
+            ListNode prev=node;
+            while(node.next!=null){
+                prev=node;
+                node=node.next;
+            }
+            prev.next=null;
+            node.next=head;
+            head=node;
+            rot--;
+        }
+        return head;
+    }
+}
