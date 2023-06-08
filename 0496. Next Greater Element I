@@ -47,6 +47,7 @@ SOLUTION IN JAVA:
 Time Complexity o(n^2);
 Space Complexity o(n);
 
+SOLUTION 1:
 
 class Solution {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
@@ -69,5 +70,26 @@ class Solution {
 			}
 		}
         return ans;
+    }
+}
+
+
+SOLUITON 2:
+
+
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+		Map<Integer,Integer>map=new HashMap<>();
+        Stack<Integer>stack=new Stack<>();
+        for(int n:nums2){
+            while(!stack.isEmpty() && n>stack.peek()){
+                map.put(stack.pop(),n);
+            }
+            stack.push(n);
+        }
+        for(int i=0;i<nums1.length;i++){
+            nums1[i]=map.getOrDefault(nums1[i],-1);
+        }
+        return nums1;
     }
 }
